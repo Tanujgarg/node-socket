@@ -42,14 +42,14 @@ ul {
 
 .page {
   height: 100%;
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
 }
 
 /* Login Page */
 
 .login.page {
-  background-color: #000;
+  background-color: #336a86;
 }
 
 .login.page .form {
@@ -137,7 +137,8 @@ ul {
 /* Input */
 
 .inputMessage {
-  border: 10px solid #000;
+  border: 5px solid #336a86;
+  border-radius: 4px;
   bottom: 0;
   height: 60px;
   left: 0;

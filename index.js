@@ -5,6 +5,8 @@ var path = require('path');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
+var useragent = require('useragent');
+useragent(true);
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -32,6 +34,9 @@ io.on('connection', (socket) => {
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
     if (addedUser) return;
+    let ip = socket.handshake.address.split(":")
+    ip = ip[ip.length - 1]
+    var agent = useragent.parse(socket.request.headers['user-agent']);
 
     // we store the username in the socket session for this client
     socket.username = username;
@@ -43,7 +48,9 @@ io.on('connection', (socket) => {
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
       username: socket.username,
-      numUsers: numUsers
+      numUsers: numUsers,
+      ip: ip,
+      device: agent.device.family
     });
   });
 

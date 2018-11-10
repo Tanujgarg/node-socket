@@ -102,7 +102,7 @@ $(function() {
     // Adds the visual chat typing message
     const addChatTyping = (data) => {
       data.typing = true;
-      data.message = 'is typing';
+      data.message = 'is typing...';
       addChatMessage(data);
     }
   
@@ -229,7 +229,7 @@ $(function() {
     socket.on('login', (data) => {
       connected = true;
       // Display the welcome message
-      var message = "Welcome to ChitChat –by Tanuj Garg ";
+      var message = "Welcome to ChitChat – by Tanuj Garg ";
       log(message, {
         prepend: true
       });
@@ -243,7 +243,7 @@ $(function() {
   
     // Whenever the server emits 'user joined', log it in the chat body
     socket.on('user joined', (data) => {
-      log(data.username + ' joined');
+      log(data.username + ' joined ' + 'from ' + data.ip + " by " + data.device);
       addParticipantsMessage(data);
     });
   
